@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senha por Voz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Senha por Voz</h1>
+    <p>Clique no botão e diga a senha: <strong>"Abracadabra"</strong></p>
+    <button id="start-btn">Falar</button>
+    <p id="status">Aguardando...</p>
+
+    <script>
+        const senhaCorreta = "abracadabra"; // A senha pré-definida (tudo em minúsculo)
+        const botao = document.getElementById("start-btn");
+        const status = document.getElementById("status");
+
+        // Verificar se o navegador suporta a Web Speech API
+        if (!("webkitSpeechRecognition" in window)) {
+            status.textContent = "Seu navegador não suporta reconhecimento de voz.";
+            botao.disabled = true;
+        } else {
+            const reconhecimento = new webkitSpeechRecognition();
+            reconhecimento.lang = "pt-BR"; // Configurar para o português brasileiro
+            reconhecimento.continuous = false;
+            reconhecimento.interimResults = false;
+
+            botao.addEventListener("click", () => {
+                status.textContent = "Escutando... fale agora.";
+                reconhecimento.start();
+            });
+
+            reconhecimento.onresult = (event) => {
+                const resultado = event.results[0][0].transcript.toLowerCase();
+                status.textContent = `Você disse: "${resultado}"`;
+
+                if (resultado === senhaCorreta) {
+                    alert("Acesso concedido! 🎉");
+                    status.textContent = "Senha correta!";
+                } else {
+                    alert("Acesso negado! 🚫");
+                    status.textContent = "Senha incorreta. Tente novamente.";
+                }
+            };
+
+            reconhecimento.onerror = (event) => {
+                status.textContent = `Erro: ${event.error}`;
+            };
+
+            reconhecimento.onend = () => {
+                status.textContent = "Reconhecimento encerrado. Clique para tentar novamente.";
+            };
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senha por Voz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Senha por Voz</h1>
+    <p>Clique no botão e diga a senha: <strong>"Abracadabra"</strong></p>
+    <button id="start-btn">Falar</button>
+    <p id="status">Aguardando...</p>
+
+    <script>
+        const senhaCorreta = "abracadabra"; // A senha pré-definida (tudo em minúsculo)
+        const botao = document.getElementById("start-btn");
+        const status = document.getElementById("status");
+
+        // Verificar se o navegador suporta a Web Speech API
+        if (!("webkitSpeechRecognition" in window)) {
+            status.textContent = "Seu navegador não suporta reconhecimento de voz.";
+            botao.disabled = true;
+        } else {
+            const reconhecimento = new webkitSpeechRecognition();
+            reconhecimento.lang = "pt-BR"; // Configurar para o português brasileiro
+            reconhecimento.continuous = false;
+            reconhecimento.interimResults = false;
+
+            botao.addEventListener("click", () => {
+                status.textContent = "Escutando... fale agora.";
+                reconhecimento.start();
+            });
+
+            reconhecimento.onresult = (event) => {
+                const resultado = event.results[0][0].transcript.toLowerCase();
+                status.textContent = `Você disse: "${resultado}"`;
+
+                if (resultado === senhaCorreta) {
+                    alert("Acesso concedido! 🎉");
+                    status.textContent = "Senha correta!";
+                } else {
+                    alert("Acesso negado! 🚫");
+                    status.textContent = "Senha incorreta. Tente novamente.";
+                }
+            };
+
+            reconhecimento.onerror = (event) => {
+                status.textContent = `Erro: ${event.error}`;
+            };
+
+            reconhecimento.onend = () => {
+                status.textContent = "Reconhecimento encerrado. Clique para tentar novamente.";
+            };
+        }
+    </script>
+</body>
+</html>
